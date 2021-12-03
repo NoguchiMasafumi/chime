@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>CHIME</title>
+    <meta property="og:description" content="家庭学習の際に時間を気にするのが意外と大変だったため作成しました。" />
+  </head>
+
+  <body>
+    <audio id="sound" src="" type="audio/mpeg"></audio>
+    <table>
+      <tr><td colspan="2"><input type="button" onclick="audio_set()" value="アラームスタート"></td></tr>
+      <tr><td>1</td><td><input type="text" name="set_time" value="08:45:00"></td></tr>
+      <tr><td> </td><td><input type="text" name="set_time" value="09:30:00"></td></tr>
+      <tr><td>2</td><td><input type="text" name="set_time" value="09:40:00"></td></tr>
+      <tr><td> </td><td><input type="text" name="set_time" value="10:25:00"></td></tr>
+      <tr><td>3</td><td><input type="text" name="set_time" value="10:45:00"></td></tr>
+      <tr><td> </td><td><input type="text" name="set_time" value="11:30:00"></td></tr>
+      <tr><td>4</td><td><input type="text" name="set_time" value="11:35:00"></td></tr>
+      <tr><td> </td><td><input type="text" name="set_time" value="12:20:00"></td></tr>
+      <tr><td>5</td><td><input type="text" name="set_time" value="13:00:00"></td></tr>
+      <tr><td> </td><td><input type="text" name="set_time" value="13:45:00"></td></tr>
+      <tr><td>6</td><td><input type="text" name="set_time" value="13:50:00"></td></tr>
+      <tr><td> </td><td><input type="text" name="set_time" value="14:35:00"></td></tr>
+    </table>
+    <script>
+      var time;
+
+      function audio_set(){
+        document.getElementById("sound").src="audio/Westminster_Abbey_Chime.mp3"
+        main();
+      }
+
+      function main() {
+        time = new Date();
+      	str_time=time.getHours()+":"+("00"+time.getMinutes()).substr(-2,2) + ":" + ("00" + time.getSeconds()).substr(-2,2)
+        const txt1 = document.getElementsByName("set_time")
+        for(i=0;i<txt1.length;i++){
+          if(str_time==txt1[i].value){
+            sound.play();
+	        } 
+        }
+        document.title = str_time
+        setTimeout(main, 1000-time.getMilliseconds());
+      }
+    </script>
+  </body>
+</html>
